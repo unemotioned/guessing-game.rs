@@ -48,17 +48,18 @@ fn main() {
     println!("Guessing game!");
     println!("==============\n");
 
-    let og_left: u32 = get_number_input("Set start of range: ");
-    let og_right: u32 = get_number_input("Set end of range: ");
+    // type inferred from function return type
+    let og_left = get_number_input("Set start of range: ");
+    let og_right = get_number_input("Set end of range: ");
 
-    let mut left_edge: u32 = og_left;
-    let mut right_edge: u32 = og_right;
-
-    let secret_number = rand::rng().random_range(left_edge..=right_edge);
+    let mut left_edge = og_left;
+    let mut right_edge = og_right;
 
     println!("Range: {left_edge} ~ {right_edge}");
 
-    let limit: u32 = get_number_input("Set limit of attempt: ");
+    let secret_number = rand::rng().random_range(left_edge..=right_edge);
+
+    let limit = get_number_input("Set limit of attempt: ");
     println!("Attempt limit: {limit}");
 
     let mut cnt: u32 = 0;
