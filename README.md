@@ -1,28 +1,22 @@
 # Guessing Game
 
 Started with the [Rust tutorial](https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html),
-just to try something new.
-Later, added some logics to make it more fun.
+just to try something new. Later, added some logics to make it more fun.
 
-Such as:
+---
+
+## Features
 
 - Setting random number range
 - Setting attempt limit
 - Prompt attempt count
 - Suggesting next best guess
 
-<!-- markdownlint-disable-next-line no-inline-html -->
-<div align="center">
-
-> I use **_Rust_**, by the way.
-
-</div>
-
 ---
 
-## Compile VS Build
+## Compile vs Build
 
-`rustc` **VS** `cargo build`
+`rustc` vs `cargo`
 
 ### Compile
 
