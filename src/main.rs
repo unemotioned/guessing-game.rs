@@ -64,40 +64,40 @@ fn main() {
 
     let mut cnt: u32 = 0;
 
-    let mut is_too_big;
-
     loop {
         cnt += 1;
         let msg = format!("\nPlease input your guess({cnt}/{limit}): ");
         let guess: u32 = get_number_input(&msg);
         println!("Your guess: {guess}");
 
-        match guess.cmp(&secret_number) {
+        if limit == cnt {
+            println!("\n==============\n");
+            println!("You have reached the limit!");
+            println!("The secret number was: {secret_number}");
+            break;
+        }
+
+        // check if guess is within original range
+        if guess < og_left || guess > og_right {
+            println!("The guess is out of range.");
+            continue;
+        }
+
+        // declare immutable variable each iteration
+        let is_too_big = match guess.cmp(&secret_number) {
             Ordering::Less => {
                 println!("Too small!");
-                is_too_big = false;
+                false // assigned to is_too_big
             }
             Ordering::Greater => {
                 println!("Too big!");
-                is_too_big = true;
+                true
             }
             Ordering::Equal => {
                 println!("You win!");
                 break;
             }
         };
-
-        if limit == cnt {
-            println!("You have reached the limit!");
-            println!("The secret number was: {secret_number}");
-            break;
-        }
-
-        // check range
-        if guess < og_left || guess > og_right {
-            println!("The guess is out of range.");
-            continue;
-        }
 
         // narrow range
         if is_too_big && (guess <= right_edge) {
