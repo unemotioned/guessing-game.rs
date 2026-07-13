@@ -2,6 +2,7 @@ use rand::prelude::*;
 use std::cmp::Ordering;
 use std::io;
 use std::io::Write;
+use std::process::Command;
 
 fn get_number_input(msg: &str) -> u32 {
     loop {
@@ -20,7 +21,29 @@ fn get_number_input(msg: &str) -> u32 {
     }
 }
 
+fn clear_terminal() {
+    // check one runtime windows | macos | linux
+    // let current_os = std::env::consts::OS;
+    // println!("Current OS: {current_os}");
+
+    // cfg!() is a compile-time boolean; dead branches are eliminated
+    //  checks against the target triple (os, arch, family, env)
+    if cfg!(target_os = "windows") {
+        // .status() lets output reach the terminal; .output() would capture it
+        Command::new("clr")
+            .status()
+            .expect("failed to execute process");
+    } else {
+        Command::new("clear")
+            .arg("-x") // preserve scrollback history
+            .status()
+            .expect("failed to execute process");
+    };
+}
+
 fn main() {
+    clear_terminal();
+
     println!("\n==============");
     println!("Guessing game!");
     println!("==============\n");
