@@ -101,12 +101,14 @@ fn main() {
 
         // narrow range
         if is_too_big && (guess <= right_edge) {
-            right_edge = guess;
+            // exclude guessed number
+            right_edge = guess - 1;
         } else if guess >= left_edge {
-            left_edge = guess;
+            left_edge = guess + 1;
         }
 
         let next_best = (left_edge + right_edge) / 2;
         println!("Next best guess is: {next_best}");
+        println!("\n--------------");
     }
 }
