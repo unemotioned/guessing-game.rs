@@ -22,16 +22,16 @@ fn get_number_input(msg: &str) -> u32 {
 }
 
 fn clear_terminal() {
-    // check one runtime windows | macos | linux
+    // check on runtime: windows | macos | linux
     // let current_os = std::env::consts::OS;
     // println!("Current OS: {current_os}");
 
-    // cfg!() is a compile-time boolean; dead branches are eliminated
-    //  checks against the target triple (os, arch, family, env)
+    // cfg!() checks against the target triple (os, arch, family) at compile time
+    //  dead branches are eliminated
     if cfg!(target_os = "windows") {
-        // .status() lets output reach the terminal; .output() would capture it
-        Command::new("clr")
-            .status()
+        Command::new("cmd") // windows cmd prompt
+            .args(["/c", "cls"]) // execute following cmd and exit, clear console
+            .status() // output reach the terminal; .output() would capture it
             .expect("failed to execute process");
     } else {
         Command::new("clear")
