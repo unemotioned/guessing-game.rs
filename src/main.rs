@@ -22,7 +22,7 @@ fn get_number_input(msg: &str) -> u32 {
 }
 
 fn clear_terminal() {
-    // check on runtime: windows | macos | linux
+    // check on runtime: macOS | Windows | Linux
     // let current_os = std::env::consts::OS;
     // println!("Current OS: {current_os}");
 
@@ -70,13 +70,6 @@ fn main() {
         let guess: u32 = get_number_input(&msg);
         println!("Your guess: {guess}");
 
-        if limit == cnt {
-            println!("\n==============\n");
-            println!("You have reached the limit!");
-            println!("The secret number was: {secret_number}");
-            break;
-        }
-
         // check if guess is within original range
         if guess < og_left || guess > og_right {
             println!("The guess is out of range.");
@@ -98,6 +91,13 @@ fn main() {
                 break;
             }
         };
+
+        if limit == cnt {
+            println!("\n==============\n");
+            println!("You have reached the limit!");
+            println!("The secret number was: {secret_number}");
+            break;
+        }
 
         // narrow range
         if is_too_big && (guess <= right_edge) {
