@@ -53,7 +53,3 @@ cargo build
 
 cargo run
 ```
-
----
-
-#### Stay Rusty 🦀
